@@ -6,6 +6,7 @@
 $light-mode: red;
 // Import the rest of Bulma:
 @import 'bulma/bulma.sass';
+@import '~bulma-extensions/bulma-switch/dist/css/bulma-switch.min.css';
 
 body {
   margin: 0;
@@ -25,4 +26,8 @@ code {
 
 * {
   font-family: 'Quicksand', sans-serif;
+}
+
+button {
+  outline: none;
 }

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+// eslint-disable-next-line
 import { Editor, EditorState, Modifier } from 'draft-js';
 import Textarea from 'react-expanding-textarea';
 
@@ -59,11 +61,14 @@ function Main() {
     return output;
   };
 
+  // let url = `https://ipeirotis-readability-metrics.p.rapidapi.com/getReadabilityMetrics?text=`;
+  // url += encodeURI(inputText);
+
   let url = `https://ipeirotis-readability-metrics.p.rapidapi.com/getReadabilityMetrics?text=`;
   url += encodeURI(inputText);
 
   return (
-    <section className="hero is-fullheight">
+    <section className="hero is-light is-fullheight">
       <div className="hero-bead">
         <nav className="navbar" role="navigation" aria-label="navigation">
           <div className="navbar-item is-hoverable">
@@ -78,7 +83,7 @@ function Main() {
       <div className="hero-body test">
         <div className="container">
           <div className="columns">
-            <div className="column">
+            <div className="column has-background-white">
               {/* <Editor
                 className="title"
                 editorState={editorTitleState}
@@ -87,8 +92,9 @@ function Main() {
                 blockStyleFn={myBlockStyleFn}
               /> */}
 
-              <textarea
-                className="textarea"
+              <Textarea
+                autoFocus={true}
+                className=""
                 value={inputText}
                 onChange={handleChange}
                 style={{
@@ -102,14 +108,14 @@ function Main() {
               />
             </div>
             <div className="column">
-              <h1>Bewertung: </h1>
+              <h1 className="has-text-weight-bold">Bewertung: </h1>
               <p>{result}</p>
             </div>
           </div>
         </div>
       </div>
       <div className="hero-footer">
-        <p>Copyrights</p>
+        <p>Copyrights © 2019</p>
       </div>
     </section>
   );

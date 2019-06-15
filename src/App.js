@@ -5,7 +5,7 @@ import 'bulma/css/bulma.css';
 import './App.css';
 import Home from './components/Home';
 import Main from './components/Main';
-import Test from './components/Test';
+// import Test from './components/Test';
 
 function About() {
   return <h2>About</h2>;
