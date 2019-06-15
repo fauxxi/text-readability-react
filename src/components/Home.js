@@ -52,7 +52,9 @@ function Home() {
         </div>
       </div>
       <div className="hero-footer">
-        <p>Copyrights © 2019</p>
+        <p>
+          <Link to="/impressum/">Impressum</Link> | Copyrights © 2019
+        </p>
       </div>
     </section>
   );

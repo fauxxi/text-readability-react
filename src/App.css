@@ -1,5 +1,4 @@
 /*! bulma.io v0.7.4 | MIT License | github.com/jgthms/bulma */
-@import url(~bulma-extensions/bulma-switch/dist/css/bulma-switch.min.css);
 @keyframes spinAround {
   from {
     transform: rotate(0deg); }
