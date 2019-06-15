@@ -3,18 +3,28 @@ import React from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import './Home.css';
 import graphic from '../assets/education.svg';
+import qul from '../assets/Logo_QUL_long.png';
 
 function Home() {
   return (
     <section className="hero is-light is-fullheight">
       <div className="hero-head ">
         <nav
-          className="navbar "
+          className="navbar"
           role="navigation"
           aria-label="dropdown navigation"
         >
-          <div className="navbar-item is-hoverable">
-            <h1 className="has-text-weight-bold">Text-Readability</h1>
+          <div className="navbar-start">
+            <div className="navbar-item is-hoverable">
+              <h1 className="has-text-weight-bold">Text-Readability</h1>
+            </div>
+          </div>
+          <div className="navbar-end">
+            <img
+              src={qul}
+              style={{ width: '20%', height: '100%' }}
+              alt="QUL logo"
+            />
           </div>
           {/* <div class="navbar-item field">
             <label for="switchRoundedDefault">Dark mode: </label>
@@ -48,6 +58,33 @@ function Home() {
             <div className="column">
               <img src={graphic} alt="illustration" />
             </div>
+          </div>
+          <br />
+          <br />
+          <div>
+            <h1 className="has-text-weight-bold is-size-1-desktop has-text-centered">
+              About This Project
+            </h1>
+            <p className="has-text-centered">
+              This Website is created in the context of the course “Projekt
+              Medienerstellung” (Project on developing media) at Technische
+              Universität Berlin in 2019. It uses an API (application
+              programming interface) made by{' '}
+              <a
+                className="has-text-primary"
+                href="https://laboratories.telekom.com/de/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                T-Labs
+              </a>
+              .
+            </p>
+            <p className="has-text-centered">
+              The text input will be categorized automatically. As it is very
+              easy to use, you can focus on improving the readability of your
+              text.
+            </p>
           </div>
         </div>
       </div>
