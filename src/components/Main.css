@@ -1,0 +1,13 @@
+.bar {
+  width: 500px;
+  height: 30px;
+  background-color: #333;
+  position: relative; }
+  .bar .rating {
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 57.14286%;
+    height: 100%;
+    background-color: #00d1b2; }
