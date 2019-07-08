@@ -90,7 +90,8 @@ function Home() {
       </div>
       <div className="hero-footer">
         <p>
-          <Link to="/impressum/">Impressum</Link> | Copyrights © 2019
+          <Link to="/impressum/">Impressum</Link> |{' '}
+          <Link to="/api/">About the API</Link> | Copyrights © 2019
         </p>
       </div>
     </section>

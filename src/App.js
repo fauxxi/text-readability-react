@@ -6,6 +6,7 @@ import './App.css';
 import Home from './components/Home';
 import Main from './components/Main';
 import Impressum from './components/Impressum';
+import Api from './components/Api';
 // import Test from './components/Test';
 
 // function About() {
@@ -18,6 +19,7 @@ function App() {
       <div>
         <Route path="/" exact component={Home} />
         <Route path="/impressum/" component={Impressum} />
+        <Route path="/api/" component={Api} />
         <Route path="/app/" component={Main} />
       </div>
     </Router>

@@ -14,11 +14,12 @@ import Lottie from 'react-lottie';
 
 function Main() {
   const [inputText, setText] = useState('');
-  const [result, setResult] = useState('Waiting for text input...');
+  const [result, setResult] = useState('Waiting for user input...');
 
   let url = `http://tc.qu.tu-berlin.de/api/v1/readability-models/rfk1/predict`;
   //url += encodeURI(inputText);
 
+  // eslint-disable-next-line
   let data = {
     text: inputText,
     ref_id: 'Testsss',
@@ -28,6 +29,9 @@ function Main() {
 
   const handleChange = e => {
     setText(e.target.value);
+  };
+
+  const check = () => {
     fetch(url, {
       method: 'POST',
       mode: 'no-cors',
@@ -40,29 +44,155 @@ function Main() {
         language: 'DE',
         target_group: 'B1'
       })
-    }).then(response => {
-      console.log('Response: ', response);
-      setResult(response.overall_score);
-      console.log('Result:', result);
-    });
+    })
+      .then(response => response.json())
+      .then(response => {
+        console.log('Response: ', response);
+        setResult(response.overall_score);
+        console.log('Result:', result);
+      });
   };
 
-  console.log(data);
+  const resultDesc = val => {
+    if (val >= 0 && val <= 1) {
+      return 'This passage is very easy to understand, and has no complexity whatsoever regarding readability.';
+    } else if (val > 1 && val <= 2) {
+      return 'This passage is still easy to understand, but it has a little more complexity regarding it’s content.';
+    } else if (val > 2 && val <= 3) {
+      return 'This passage might be harder, but still easy enough to understand, it has more complex elements.';
+    } else if (val > 3 && val <= 4) {
+      return 'The content of this passage might be difficult to understand, it’s fairly complex in terms of readability.';
+    } else if (val > 4 && val <= 5) {
+      return 'This passage is fairly hard to understand and contains difficult phrases, which might slow down readability.';
+    } else if (val > 5 && val <= 6) {
+      return 'This passage is hard to understand and has a high degree of difficulty in it, you might want to try to break it down to improve readability.';
+    } else if (val > 6 && val <= 7) {
+      return 'This passage is very hard to understand and has a high difficulty in it’s content, advising to rephrase it to ease up the readability.';
+    } else return 'Something is wrong. Sorry.';
+  };
+
+  //console.log(data);
 
   const ratingBarStyle = {
     padding: 0,
     position: 'absolute',
     top: 0,
     left: 0,
-    width: `${(result === 'Waiting for text input...'
-      ? 0
-      : parseFloat(result) / 7) * 100}%`,
+    // width: `${(result === 'Waiting for text input...'
+    //   ? 0
+    //   : parseFloat(result) / 7) * 100}%`,
+    width: `${(7 / 7) * 100}%`,
     height: '100%',
-    backgroundColor: 'hsl(171, 100%, 41%)',
+    backgroundColor: '#fa6868',
     transition: 'all .5s ease'
   };
 
+  const ratingBarStyle2 = {
+    padding: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    // width: `${(result === 'Waiting for text input...'
+    //   ? 0
+    //   : parseFloat(result) / 7) * 100}%`,
+    width: `${(6 / 7) * 100}%`,
+    height: '100%',
+    backgroundColor: '#fc9572',
+    transition: 'all .5s ease'
+  };
+
+  const ratingBarStyle3 = {
+    padding: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    // width: `${(result === 'Waiting for text input...'
+    //   ? 0
+    //   : parseFloat(result) / 7) * 100}%`,
+    width: `${(5 / 7) * 100}%`,
+    height: '100%',
+    backgroundColor: '#fcbe81',
+    transition: 'all .5s ease'
+  };
+
+  const ratingBarStyle4 = {
+    padding: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    // width: `${(result === 'Waiting for text input...'
+    //   ? 0
+    //   : parseFloat(result) / 7) * 100}%`,
+    width: `${(4 / 7) * 100}%`,
+    height: '100%',
+    backgroundColor: '#ffe985',
+    transition: 'all .5s ease'
+  };
+
+  const ratingBarStyle5 = {
+    padding: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    // width: `${(result === 'Waiting for text input...'
+    //   ? 0
+    //   : parseFloat(result) / 7) * 100}%`,
+    width: `${(3 / 7) * 100}%`,
+    height: '100%',
+    backgroundColor: '#cdde78',
+    transition: 'all .5s ease'
+  };
+
+  const ratingBarStyle6 = {
+    padding: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    // width: `${(result === 'Waiting for text input...'
+    //   ? 0
+    //   : parseFloat(result) / 7) * 100}%`,
+    width: `${(2 / 7) * 100}%`,
+    height: '100%',
+    backgroundColor: '#95ce7d',
+    transition: 'all .5s ease'
+  };
+
+  const ratingBarStyle7 = {
+    padding: 0,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    // width: `${(result === 'Waiting for text input...'
+    //   ? 0
+    //   : parseFloat(result) / 7) * 100}%`,
+    width: `${(1 / 7) * 100}%`,
+    height: '100%',
+    backgroundColor: '#66bc7b',
+    transition: 'all .5s ease'
+  };
+
+  const span = {
+    margin: 4,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    color: '#000'
+  };
+
+  const spanx = {
+    marginLeft: -7,
+    position: 'absolute',
+    top: -30,
+    left: `${(result === 'Waiting for text input...'
+      ? 0
+      : parseFloat(result) / 7) * 100}%`,
+    color: '#000',
+    fontSize: '2em',
+    zIndex: 2
+  };
+
   const barStyle = {
+    marginTop: 10,
     width: '100%',
     height: '30',
     backgroundColor: '#333',
@@ -108,16 +238,9 @@ function Main() {
         <div className="container">
           <div className="columns">
             <div className="column ">
-              {/* <Editor
-                className="title"
-                editorState={editorTitleState}
-                onChange={editorTitleState => setEditorTitle(editorTitleState)}
-                placeholder={'Type your title'}
-                blockStyleFn={myBlockStyleFn}
-              /> */}
-
               <TextareaAutosize
                 autoFocus={true}
+                rows={10}
                 className=""
                 value={inputText}
                 onChange={handleChange}
@@ -132,31 +255,78 @@ function Main() {
                 }}
                 placeholder={'Type your text here.'}
               />
+
+              <button
+                className="button is-primary has-text-weight-bold"
+                onClick={check}
+              >
+                Check
+              </button>
             </div>
             <div className="column">
-              <h1 className="has-text-weight-bold">Bewertung: </h1>
-              {/* {result === 'Waiting for text input...' ? (
-                <Lottie
-                  options={{
-                    loop: true,
-                    autoplay: true,
-                    animationData: require('../assets/loader1.json'),
-                    rendererSettings: {
-                      preserveAspectRatio: 'xMidYMid slice'
-                    }
-                  }}
-                  height={30}
-                  width={'100%'}
-                />
-              ) : (
-                <p>{result}</p>
-              )} */}
-              <p>{result}</p>
+              <h1 className="has-text-weight-bold">Rating: </h1>
+
+              <p className="">{`${result} - ${resultDesc(result)}`}</p>
               <div className="bar" style={barStyle}>
+                <span className="has-text-weight-bold" style={spanx}>
+                  x
+                </span>
                 <div
                   className="rating animated slideInLeft"
                   style={ratingBarStyle}
-                />
+                >
+                  <span className="has-text-weight-bold" style={span}>
+                    7
+                  </span>
+                </div>
+                <div
+                  className="rating animated slideInLeft"
+                  style={ratingBarStyle2}
+                >
+                  <span className="has-text-weight-bold" style={span}>
+                    6
+                  </span>
+                </div>
+                <div
+                  className="rating animated slideInLeft"
+                  style={ratingBarStyle3}
+                >
+                  <span className="has-text-weight-bold" style={span}>
+                    5
+                  </span>
+                </div>
+                <div
+                  className="rating animated slideInLeft"
+                  style={ratingBarStyle4}
+                >
+                  <span className="has-text-weight-bold" style={span}>
+                    4
+                  </span>
+                </div>
+                <div
+                  className="rating animated slideInLeft"
+                  style={ratingBarStyle5}
+                >
+                  <span className="has-text-weight-bold" style={span}>
+                    3
+                  </span>
+                </div>
+                <div
+                  className="rating animated slideInLeft"
+                  style={ratingBarStyle6}
+                >
+                  <span className="has-text-weight-bold" style={span}>
+                    2
+                  </span>
+                </div>
+                <div
+                  className="rating animated slideInLeft"
+                  style={ratingBarStyle7}
+                >
+                  <span className="has-text-weight-bold" style={span}>
+                    1
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -164,7 +334,8 @@ function Main() {
       </div>
       <div className="hero-footer">
         <p>
-          <Link to="/impressum/">Impressum</Link> | Copyrights © 2019
+          <Link to="/impressum/">Impressum</Link> |{' '}
+          <Link to="/api/">About the API</Link> | Copyrights © 2019
         </p>
       </div>
     </section>
