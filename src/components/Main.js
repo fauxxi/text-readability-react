@@ -52,13 +52,9 @@ function Main() {
     })
       .then(response => response.json())
       .then(response => {
-        if (response.ok) {
-          console.log('Response: ', response);
-          setResult(response.overall_score);
-          console.log('Result:', result);
-        }
-        //if not throw an error to be handled in catch block
-        throw new Error(response);
+        console.log('Response: ', response);
+        setResult(response.overall_score);
+        console.log('Result:', result);
       })
       .catch(function(error) {
         //Handle error
