@@ -55,128 +55,136 @@ function Main() {
 
   const resultDesc = val => {
     if (val >= 0 && val <= 1) {
-      return 'This passage is very easy to understand, and has no complexity whatsoever regarding readability.';
+      return '- This passage is very easy to understand, and has no complexity whatsoever regarding readability.';
     } else if (val > 1 && val <= 2) {
-      return 'This passage is still easy to understand, but it has a little more complexity regarding it’s content.';
+      return '- This passage is still easy to understand, but it has a little more complexity regarding it’s content.';
     } else if (val > 2 && val <= 3) {
-      return 'This passage might be harder, but still easy enough to understand, it has more complex elements.';
+      return '- This passage might be harder, but still easy enough to understand, it has more complex elements.';
     } else if (val > 3 && val <= 4) {
-      return 'The content of this passage might be difficult to understand, it’s fairly complex in terms of readability.';
+      return '- The content of this passage might be difficult to understand, it’s fairly complex in terms of readability.';
     } else if (val > 4 && val <= 5) {
-      return 'This passage is fairly hard to understand and contains difficult phrases, which might slow down readability.';
+      return '- This passage is fairly hard to understand and contains difficult phrases, which might slow down readability.';
     } else if (val > 5 && val <= 6) {
-      return 'This passage is hard to understand and has a high degree of difficulty in it, you might want to try to break it down to improve readability.';
+      return '- This passage is hard to understand and has a high degree of difficulty in it, you might want to try to break it down to improve readability.';
     } else if (val > 6 && val <= 7) {
-      return 'This passage is very hard to understand and has a high difficulty in it’s content, advising to rephrase it to ease up the readability.';
-    } else return 'Something is wrong. Sorry.';
+      return '- This passage is very hard to understand and has a high difficulty in it’s content, advising to rephrase it to ease up the readability.';
+    } else if (val === 'Waiting for user input...') {
+      return '';
+    } else {
+      return '- Something is wrong. Try input text again.';
+    }
   };
 
   //console.log(data);
 
-  const ratingBarStyle = {
-    padding: 0,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    // width: `${(result === 'Waiting for text input...'
-    //   ? 0
-    //   : parseFloat(result) / 7) * 100}%`,
-    width: `${(7 / 7) * 100}%`,
-    height: '100%',
-    backgroundColor: '#fa6868',
-    transition: 'all .5s ease'
-  };
+  // const ratingBarStyle = {
+  //   padding: 0,
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   // width: `${(result === 'Waiting for text input...'
+  //   //   ? 0
+  //   //   : parseFloat(result) / 7) * 100}%`,
+  //   width: `${(7 / 7) * 100}%`,
+  //   height: '100%',
+  //   backgroundColor: '#fa6868',
+  //   transition: 'all .5s ease'
+  // };
 
-  const ratingBarStyle2 = {
-    padding: 0,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    // width: `${(result === 'Waiting for text input...'
-    //   ? 0
-    //   : parseFloat(result) / 7) * 100}%`,
-    width: `${(6 / 7) * 100}%`,
-    height: '100%',
-    backgroundColor: '#fc9572',
-    transition: 'all .5s ease'
-  };
+  // const ratingBarStyle2 = {
+  //   padding: 0,
+  //   display: 'inline',
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   // width: `${(result === 'Waiting for text input...'
+  //   //   ? 0
+  //   //   : parseFloat(result) / 7) * 100}%`,
+  //   width: `${(6 / 6) * 100}%`,
+  //   height: '100%',
+  //   backgroundColor: '#fc9572',
+  //   transition: 'all .5s ease'
+  // };
 
-  const ratingBarStyle3 = {
-    padding: 0,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    // width: `${(result === 'Waiting for text input...'
-    //   ? 0
-    //   : parseFloat(result) / 7) * 100}%`,
-    width: `${(5 / 7) * 100}%`,
-    height: '100%',
-    backgroundColor: '#fcbe81',
-    transition: 'all .5s ease'
-  };
+  // const ratingBarStyle3 = {
+  //   padding: 0,
+  //   position: 'absolute',
+  //   display: 'inline',
+  //   top: 0,
+  //   left: 0,
+  //   // width: `${(result === 'Waiting for text input...'
+  //   //   ? 0
+  //   //   : parseFloat(result) / 7) * 100}%`,
+  //   width: `${(5 / 6) * 100}%`,
+  //   height: '100%',
+  //   backgroundColor: '#fcbe81',
+  //   transition: 'all .5s ease'
+  // };
 
-  const ratingBarStyle4 = {
-    padding: 0,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    // width: `${(result === 'Waiting for text input...'
-    //   ? 0
-    //   : parseFloat(result) / 7) * 100}%`,
-    width: `${(4 / 7) * 100}%`,
-    height: '100%',
-    backgroundColor: '#ffe985',
-    transition: 'all .5s ease'
-  };
+  // const ratingBarStyle4 = {
+  //   padding: 0,
+  //   position: 'absolute',
+  //   display: 'inline',
+  //   top: 0,
+  //   left: 0,
+  //   // width: `${(result === 'Waiting for text input...'
+  //   //   ? 0
+  //   //   : parseFloat(result) / 7) * 100}%`,
+  //   width: `${(4 / 6) * 100}%`,
+  //   height: '100%',
+  //   backgroundColor: '#ffe985',
+  //   transition: 'all .5s ease'
+  // };
 
-  const ratingBarStyle5 = {
-    padding: 0,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    // width: `${(result === 'Waiting for text input...'
-    //   ? 0
-    //   : parseFloat(result) / 7) * 100}%`,
-    width: `${(3 / 7) * 100}%`,
-    height: '100%',
-    backgroundColor: '#cdde78',
-    transition: 'all .5s ease'
-  };
+  // const ratingBarStyle5 = {
+  //   padding: 0,
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   // width: `${(result === 'Waiting for text input...'
+  //   //   ? 0
+  //   //   : parseFloat(result) / 7) * 100}%`,
+  //   width: `${(3 / 6) * 100}%`,
+  //   height: '100%',
+  //   backgroundColor: '#cdde78',
+  //   transition: 'all .5s ease'
+  // };
 
-  const ratingBarStyle6 = {
-    padding: 0,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    // width: `${(result === 'Waiting for text input...'
-    //   ? 0
-    //   : parseFloat(result) / 7) * 100}%`,
-    width: `${(2 / 7) * 100}%`,
-    height: '100%',
-    backgroundColor: '#95ce7d',
-    transition: 'all .5s ease'
-  };
+  // const ratingBarStyle6 = {
+  //   padding: 0,
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   // width: `${(result === 'Waiting for text input...'
+  //   //   ? 0
+  //   //   : parseFloat(result) / 7) * 100}%`,
+  //   width: `${(2 / 6) * 100}%`,
+  //   height: '100%',
+  //   backgroundColor: '#95ce7d',
+  //   transition: 'all .5s ease'
+  // };
 
-  const ratingBarStyle7 = {
-    padding: 0,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    // width: `${(result === 'Waiting for text input...'
-    //   ? 0
-    //   : parseFloat(result) / 7) * 100}%`,
-    width: `${(1 / 7) * 100}%`,
-    height: '100%',
-    backgroundColor: '#66bc7b',
-    transition: 'all .5s ease'
-  };
+  // const ratingBarStyle7 = {
+  //   padding: 0,
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   // width: `${(result === 'Waiting for text input...'
+  //   //   ? 0
+  //   //   : parseFloat(result) / 7) * 100}%`,
+  //   width: `${(1 / 6) * 100}%`,
+  //   height: '100%',
+  //   backgroundColor: '#66bc7b',
+  //   transition: 'all .5s ease'
+  // };
 
   const span = {
-    margin: 4,
-    position: 'absolute',
+    margin: 1,
+    position: 'relative',
     top: 0,
-    right: 0,
-    color: '#000'
+    left: 0,
+    color: '#000',
+    zIndex: 1000
   };
 
   const spanx = {
@@ -185,17 +193,18 @@ function Main() {
     top: -30,
     left: `${(result === 'Waiting for text input...'
       ? 0
-      : parseFloat(result) / 7) * 100}%`,
+      : (parseFloat(result) + -1) / 6) * 100}%`,
     color: '#000',
     fontSize: '2em',
-    zIndex: 2
+    zIndex: 1000
   };
 
   const barStyle = {
-    marginTop: 10,
+    marginLeft: `${-0 * 100}%`,
+    marginTop: 20,
     width: '100%',
-    height: '30',
-    backgroundColor: '#333',
+    height: 30,
+    backgroundColor: '#fff',
     position: 'relative'
   };
 
@@ -257,7 +266,7 @@ function Main() {
               />
 
               <button
-                className="button is-primary has-text-weight-bold"
+                className="button is-primary has-text-weight-bold "
                 onClick={check}
               >
                 Check
@@ -266,66 +275,89 @@ function Main() {
             <div className="column">
               <h1 className="has-text-weight-bold">Rating: </h1>
 
-              <p className="">{`${result} - ${resultDesc(result)}`}</p>
+              <p className="">{`${result} ${resultDesc(result)}`}</p>
               <div className="bar" style={barStyle}>
                 <span className="has-text-weight-bold" style={spanx}>
                   x
                 </span>
-                <div
-                  className="rating animated slideInLeft"
-                  style={ratingBarStyle}
-                >
-                  <span className="has-text-weight-bold" style={span}>
-                    7
-                  </span>
+                <div style={{ height: 30 }}>
+                  <table
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'yellow'
+                    }}
+                  >
+                    <thead
+                      style={{
+                        width: `${(1 / 6) * 100}%`,
+                        height: 30,
+                        backgroundColor: '#66bc7b'
+                      }}
+                    >
+                      <th
+                        style={{
+                          width: `${(1 / 6) * 100}%`,
+                          paddingLeft: 5,
+                          height: 30,
+                          backgroundColor: '#66bc7b'
+                        }}
+                      >
+                        1
+                      </th>
+                      <th
+                        style={{
+                          width: `${(1 / 6) * 100}%`,
+                          paddingLeft: 5,
+                          backgroundColor: '#95ce7d'
+                        }}
+                      >
+                        2
+                      </th>
+                      <th
+                        style={{
+                          width: `${(1 / 6) * 100}%`,
+                          paddingLeft: 5,
+                          backgroundColor: '#cdde78'
+                        }}
+                      >
+                        3
+                      </th>
+                      <th
+                        style={{
+                          width: `${(1 / 6) * 100}%`,
+                          paddingLeft: 5,
+                          backgroundColor: '#ffe985'
+                        }}
+                      >
+                        4
+                      </th>
+                      <th
+                        style={{
+                          width: `${(1 / 6) * 100}%`,
+                          paddingLeft: 5,
+                          backgroundColor: '#fcbe81'
+                        }}
+                      >
+                        5
+                      </th>
+                      <th
+                        style={{
+                          width: `${(1 / 6) * 100}%`,
+                          paddingLeft: 5,
+                          backgroundColor: '#fc9572'
+                        }}
+                      >
+                        6
+                      </th>
+                    </thead>
+                  </table>
                 </div>
-                <div
-                  className="rating animated slideInLeft"
-                  style={ratingBarStyle2}
-                >
-                  <span className="has-text-weight-bold" style={span}>
-                    6
-                  </span>
-                </div>
-                <div
-                  className="rating animated slideInLeft"
-                  style={ratingBarStyle3}
-                >
-                  <span className="has-text-weight-bold" style={span}>
-                    5
-                  </span>
-                </div>
-                <div
-                  className="rating animated slideInLeft"
-                  style={ratingBarStyle4}
-                >
-                  <span className="has-text-weight-bold" style={span}>
-                    4
-                  </span>
-                </div>
-                <div
-                  className="rating animated slideInLeft"
-                  style={ratingBarStyle5}
-                >
-                  <span className="has-text-weight-bold" style={span}>
-                    3
-                  </span>
-                </div>
-                <div
-                  className="rating animated slideInLeft"
-                  style={ratingBarStyle6}
-                >
-                  <span className="has-text-weight-bold" style={span}>
-                    2
-                  </span>
-                </div>
-                <div
-                  className="rating animated slideInLeft"
-                  style={ratingBarStyle7}
-                >
-                  <span className="has-text-weight-bold" style={span}>
-                    1
-                  </span>
+
+                <div stle={{ position: 'absolute' }}>
+                  <p style={{ position: 'absolute', top: 40 }}>Sehr Einfach</p>
+                  <p style={{ position: 'absolute', top: 40, right: 0 }}>
+                    Sehr Komplex
+                  </p>
                 </div>
               </div>
             </div>
