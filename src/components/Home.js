@@ -72,11 +72,11 @@ function Home() {
               programming interface) made by{' '}
               <a
                 className="has-text-primary"
-                href="https://laboratories.telekom.com/de/"
+                href="https://www.qu.tu-berlin.de/menue/qu/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                T-Labs
+                Quality and Usability Lab
               </a>
               .
             </p>

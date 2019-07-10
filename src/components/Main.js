@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 // eslint-disable-next-line
@@ -14,7 +14,11 @@ import Lottie from 'react-lottie';
 
 function Main() {
   const [inputText, setText] = useState('');
-  const [result, setResult] = useState('Waiting for user input...');
+  const [result, setResult] = useState('Waiting for user input...'); // "Waiting for user input..."
+
+  useEffect(() => {
+    document.getElementById('button-check').classList.remove('is-loading');
+  });
 
   let url = `http://tc.qu.tu-berlin.de/api/v1/readability-models/rfk1/predict`;
   //url += encodeURI(inputText);
@@ -32,6 +36,7 @@ function Main() {
   };
 
   const check = () => {
+    document.getElementById('button-check').classList.add('is-loading');
     fetch(url, {
       method: 'POST',
       mode: 'no-cors',
@@ -47,9 +52,17 @@ function Main() {
     })
       .then(response => response.json())
       .then(response => {
-        console.log('Response: ', response);
-        setResult(response.overall_score);
-        console.log('Result:', result);
+        if (response.ok) {
+          console.log('Response: ', response);
+          setResult(response.overall_score);
+          console.log('Result:', result);
+        }
+        //if not throw an error to be handled in catch block
+        throw new Error(response);
+      })
+      .catch(function(error) {
+        //Handle error
+        console.log(error);
       });
   };
 
@@ -74,109 +87,6 @@ function Main() {
       return '- Something is wrong. Try input text again.';
     }
   };
-
-  //console.log(data);
-
-  // const ratingBarStyle = {
-  //   padding: 0,
-  //   position: 'absolute',
-  //   top: 0,
-  //   left: 0,
-  //   // width: `${(result === 'Waiting for text input...'
-  //   //   ? 0
-  //   //   : parseFloat(result) / 7) * 100}%`,
-  //   width: `${(7 / 7) * 100}%`,
-  //   height: '100%',
-  //   backgroundColor: '#fa6868',
-  //   transition: 'all .5s ease'
-  // };
-
-  // const ratingBarStyle2 = {
-  //   padding: 0,
-  //   display: 'inline',
-  //   position: 'absolute',
-  //   top: 0,
-  //   left: 0,
-  //   // width: `${(result === 'Waiting for text input...'
-  //   //   ? 0
-  //   //   : parseFloat(result) / 7) * 100}%`,
-  //   width: `${(6 / 6) * 100}%`,
-  //   height: '100%',
-  //   backgroundColor: '#fc9572',
-  //   transition: 'all .5s ease'
-  // };
-
-  // const ratingBarStyle3 = {
-  //   padding: 0,
-  //   position: 'absolute',
-  //   display: 'inline',
-  //   top: 0,
-  //   left: 0,
-  //   // width: `${(result === 'Waiting for text input...'
-  //   //   ? 0
-  //   //   : parseFloat(result) / 7) * 100}%`,
-  //   width: `${(5 / 6) * 100}%`,
-  //   height: '100%',
-  //   backgroundColor: '#fcbe81',
-  //   transition: 'all .5s ease'
-  // };
-
-  // const ratingBarStyle4 = {
-  //   padding: 0,
-  //   position: 'absolute',
-  //   display: 'inline',
-  //   top: 0,
-  //   left: 0,
-  //   // width: `${(result === 'Waiting for text input...'
-  //   //   ? 0
-  //   //   : parseFloat(result) / 7) * 100}%`,
-  //   width: `${(4 / 6) * 100}%`,
-  //   height: '100%',
-  //   backgroundColor: '#ffe985',
-  //   transition: 'all .5s ease'
-  // };
-
-  // const ratingBarStyle5 = {
-  //   padding: 0,
-  //   position: 'absolute',
-  //   top: 0,
-  //   left: 0,
-  //   // width: `${(result === 'Waiting for text input...'
-  //   //   ? 0
-  //   //   : parseFloat(result) / 7) * 100}%`,
-  //   width: `${(3 / 6) * 100}%`,
-  //   height: '100%',
-  //   backgroundColor: '#cdde78',
-  //   transition: 'all .5s ease'
-  // };
-
-  // const ratingBarStyle6 = {
-  //   padding: 0,
-  //   position: 'absolute',
-  //   top: 0,
-  //   left: 0,
-  //   // width: `${(result === 'Waiting for text input...'
-  //   //   ? 0
-  //   //   : parseFloat(result) / 7) * 100}%`,
-  //   width: `${(2 / 6) * 100}%`,
-  //   height: '100%',
-  //   backgroundColor: '#95ce7d',
-  //   transition: 'all .5s ease'
-  // };
-
-  // const ratingBarStyle7 = {
-  //   padding: 0,
-  //   position: 'absolute',
-  //   top: 0,
-  //   left: 0,
-  //   // width: `${(result === 'Waiting for text input...'
-  //   //   ? 0
-  //   //   : parseFloat(result) / 7) * 100}%`,
-  //   width: `${(1 / 6) * 100}%`,
-  //   height: '100%',
-  //   backgroundColor: '#66bc7b',
-  //   transition: 'all .5s ease'
-  // };
 
   const span = {
     margin: 1,
@@ -266,7 +176,8 @@ function Main() {
               />
 
               <button
-                className="button is-primary has-text-weight-bold "
+                id="button-check"
+                className="button is-primary has-text-weight-bold"
                 onClick={check}
               >
                 Check
@@ -294,61 +205,63 @@ function Main() {
                         backgroundColor: '#66bc7b'
                       }}
                     >
-                      <th
-                        style={{
-                          width: `${(1 / 6) * 100}%`,
-                          paddingLeft: 5,
-                          height: 30,
-                          backgroundColor: '#66bc7b'
-                        }}
-                      >
-                        1
-                      </th>
-                      <th
-                        style={{
-                          width: `${(1 / 6) * 100}%`,
-                          paddingLeft: 5,
-                          backgroundColor: '#95ce7d'
-                        }}
-                      >
-                        2
-                      </th>
-                      <th
-                        style={{
-                          width: `${(1 / 6) * 100}%`,
-                          paddingLeft: 5,
-                          backgroundColor: '#cdde78'
-                        }}
-                      >
-                        3
-                      </th>
-                      <th
-                        style={{
-                          width: `${(1 / 6) * 100}%`,
-                          paddingLeft: 5,
-                          backgroundColor: '#ffe985'
-                        }}
-                      >
-                        4
-                      </th>
-                      <th
-                        style={{
-                          width: `${(1 / 6) * 100}%`,
-                          paddingLeft: 5,
-                          backgroundColor: '#fcbe81'
-                        }}
-                      >
-                        5
-                      </th>
-                      <th
-                        style={{
-                          width: `${(1 / 6) * 100}%`,
-                          paddingLeft: 5,
-                          backgroundColor: '#fc9572'
-                        }}
-                      >
-                        6
-                      </th>
+                      <tr>
+                        <th
+                          style={{
+                            width: `${(1 / 6) * 100}%`,
+                            paddingLeft: 5,
+                            height: 30,
+                            backgroundColor: '#66bc7b'
+                          }}
+                        >
+                          1
+                        </th>
+                        <th
+                          style={{
+                            width: `${(1 / 6) * 100}%`,
+                            paddingLeft: 5,
+                            backgroundColor: '#95ce7d'
+                          }}
+                        >
+                          2
+                        </th>
+                        <th
+                          style={{
+                            width: `${(1 / 6) * 100}%`,
+                            paddingLeft: 5,
+                            backgroundColor: '#cdde78'
+                          }}
+                        >
+                          3
+                        </th>
+                        <th
+                          style={{
+                            width: `${(1 / 6) * 100}%`,
+                            paddingLeft: 5,
+                            backgroundColor: '#ffe985'
+                          }}
+                        >
+                          4
+                        </th>
+                        <th
+                          style={{
+                            width: `${(1 / 6) * 100}%`,
+                            paddingLeft: 5,
+                            backgroundColor: '#fcbe81'
+                          }}
+                        >
+                          5
+                        </th>
+                        <th
+                          style={{
+                            width: `${(1 / 6) * 100}%`,
+                            paddingLeft: 5,
+                            backgroundColor: '#fc9572'
+                          }}
+                        >
+                          6
+                        </th>
+                      </tr>
                     </thead>
                   </table>
                 </div>
