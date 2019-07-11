@@ -7,11 +7,6 @@ import Home from './components/Home';
 import Main from './components/Main';
 import Impressum from './components/Impressum';
 import Api from './components/Api';
-// import Test from './components/Test';
-
-// function About() {
-//   return <h2>About</h2>;
-// }
 
 function App() {
   return (

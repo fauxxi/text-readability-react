@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-// eslint-disable-next-line
-import { Editor, EditorState, Modifier } from 'draft-js';
-//import Textarea from 'react-expanding-textarea';
 import TextareaAutosize from 'react-autosize-textarea';
 import qul from '../assets/Logo_QUL_long.png';
-import './Main.css';
-// eslint-disable-next-line
-import * as animationData from '../assets/loader2.json';
-// eslint-disable-next-line
-import Lottie from 'react-lottie';
 
 function Main() {
   const [inputText, setText] = useState('');
