@@ -7,6 +7,7 @@ import qul from '../assets/Logo_QUL_long.png';
 function Main() {
   const [inputText, setText] = useState('');
   const [result, setResult] = useState('Waiting for user input...'); // "Waiting for user input..."
+  const [highlightedText, setHighlightedText] = useState([]);
 
   useEffect(() => {
     document.getElementById('button-check').classList.remove('is-loading');
@@ -44,9 +45,10 @@ function Main() {
     })
       .then(response => response.json())
       .then(response => {
-        console.log('Response: ', response);
+        //console.log('Response: ', response);
         setResult(response.overall_score);
-        console.log('Result:', result);
+        setHighlightedText(response.detailed_analysis);
+        //console.log('Result:', result);
       })
       .catch(function(error) {
         //Handle error
@@ -261,6 +263,10 @@ function Main() {
                   </p>
                 </div>
               </div>
+              {/* {highlighted texts} */
+              highlightedText.map((val, index) => (
+                <p key={index}>val.chunk_text</p>
+              ))}
             </div>
           </div>
         </div>
